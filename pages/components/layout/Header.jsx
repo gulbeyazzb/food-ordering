@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../ui/Logo";
 import { IoSearch } from "react-icons/io5";
 import { RiShoppingCartFill } from "react-icons/ri";
 import { FaUserAlt } from "react-icons/fa";
+import SearchModal from "../SearchModal";
+import OutsideClickHandler from "react-outside-click-handler";
 
 const Header = () => {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div className="h-[5.5rem]  bg-secondary ">
       <div className="max-w-[1140px] text-white mx-auto flex justify-between items-center  py-2">
@@ -32,14 +35,26 @@ const Header = () => {
           <a href="" className="hover:text-primary cursor-pointer text-base">
             <RiShoppingCartFill />
           </a>
-          <a href="" className="hover:text-primary cursor-pointer text-lg">
+          <button
+            onClick={() => setOpenModal(true)}
+            className="hover:text-primary cursor-pointer text-lg"
+          >
             <IoSearch />
-          </a>
+          </button>
           <a href="">
             <button className="btn-prmary">Order Online</button>
           </a>
         </div>
       </div>
+      {openModal && (
+        <OutsideClickHandler
+          onOutsideClick={() => {
+            setOpenModal(false);
+          }}
+        >
+          <SearchModal />
+        </OutsideClickHandler>
+      )}
     </div>
   );
 };
