@@ -13,6 +13,7 @@ module.exports = {
       },
       fontFamily: {
         dancing: ["Dancing Script", "cursive"],
+        sans: ["Open-Sans", "sans-serif"],
       },
     },
   },
